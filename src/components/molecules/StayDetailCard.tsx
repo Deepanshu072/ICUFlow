@@ -63,7 +63,7 @@ const ICUStayCard: FC<ICUStayCardProps> = ({ icuStay, handleClick }) => {
           onClick={() => handleClick(icuStay.stay_id)}
           fullWidth
         >
-          View Patient Details
+          View Details
         </Button>
       </StyledBox>
                         

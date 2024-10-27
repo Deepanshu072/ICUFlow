@@ -13,7 +13,6 @@ import {
   FormControl,
   InputLabel,
   Box,
-  Typography,
   TablePagination,
   TableSortLabel,
   IconButton,
@@ -26,16 +25,16 @@ import CustomDatePicker from '../atoms/DatePicker';
 import { formatDateToYYYYMMDD, parseDate } from '../../utils/commonUtils';
 
 interface TableProps {
-      data: PatientsData[];
-      type: string;
-      date: any;
-      setType: any;
-      setDate: any;
-      patientType?: string;
-      dateRange?: {
-        start_time: string;
-        end_time: string;
-      };
+  data: PatientsData[];
+  type: string;
+  date: any;
+  setType: any;
+  setDate: any;
+  patientType?: string;
+  dateRange?: {
+    start_time: string;
+    end_time: string;
+  };
 }
 
 
@@ -71,16 +70,16 @@ const DataTable: React.FC<TableProps> = ({ data, type, date, setType, setDate, p
       .sort((a, b) => {
         const aValue = a[orderBy];
         const bValue = b[orderBy];
-        
+
         if (aValue === null) return order === 'asc' ? -1 : 1;
         if (bValue === null) return order === 'asc' ? 1 : -1;
-        
+
         if (typeof aValue === 'string' && typeof bValue === 'string') {
-          return order === 'asc' 
+          return order === 'asc'
             ? aValue.localeCompare(bValue)
             : bValue.localeCompare(aValue);
         }
-        
+
         return order === 'asc'
           ? (aValue < bValue ? -1 : 1)
           : (bValue < aValue ? -1 : 1);
@@ -111,19 +110,19 @@ const DataTable: React.FC<TableProps> = ({ data, type, date, setType, setDate, p
 
   useEffect(() => {
     setMenuItems(patientType === 'neurology' ? ['GCS', 'Pupil', 'Strength', 'Orientation', 'Motor'] : patientType === 'ventilation' ? ['setting', 'observation'] : []);
-  },[patientType]);
+  }, [patientType]);
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden', p: 3 }}>
       <Box sx={{ mb: 3 }}>
-        
+
         {/* Filters Section */}
-        <Box sx={{ 
-          display: 'flex', 
-          gap: 2, 
+        <Box sx={{
+          display: 'flex',
+          gap: 2,
           flexDirection: { xs: 'column', sm: 'row' },
           alignItems: { xs: 'stretch', sm: 'center' },
-          mb: 2 
+          mb: 2
         }}>
           <TextField
             label="Search"
@@ -133,25 +132,25 @@ const DataTable: React.FC<TableProps> = ({ data, type, date, setType, setDate, p
             onChange={(e) => setSearchTerm(e.target.value)}
             sx={{ flexGrow: 1 }}
           />
-          
-          {patientType !== 'labs' &&
-          <FormControl size="small" sx={{ minWidth: 150 }}>
-            <InputLabel>Category</InputLabel>
-            <Select
-              value={type ? type : 'all'}
-              label="Category"
-              onChange={(e: SelectChangeEvent) => setType(e.target.value)}
-            >
-              <MenuItem value="all">All Categories</MenuItem>
-              {menuItems.map((item) => (
-                <MenuItem value={item}>{item}</MenuItem>
-              ))}
-            </Select>
-          </FormControl> }
 
-              {dateRange && dateRange.start_time && dateRange.end_time &&
-          <CustomDatePicker label='Select date' minDate={parseDate(formatDateToYYYYMMDD(dateRange?.start_time))} maxDate={parseDate(formatDateToYYYYMMDD(dateRange?.end_time))} date={date} setDate={setDate} />
-              }
+          {patientType !== 'labs' &&
+            <FormControl size="small" sx={{ minWidth: 150 }}>
+              <InputLabel>Category</InputLabel>
+              <Select
+                value={type ? type : 'all'}
+                label="Category"
+                onChange={(e: SelectChangeEvent) => setType(e.target.value)}
+              >
+                <MenuItem value="all">All Categories</MenuItem>
+                {menuItems.map((item) => (
+                  <MenuItem value={item}>{item}</MenuItem>
+                ))}
+              </Select>
+            </FormControl>}
+
+          {dateRange && dateRange.start_time && dateRange.end_time &&
+            <CustomDatePicker label='Select date' minDate={parseDate(formatDateToYYYYMMDD(dateRange?.start_time))} maxDate={parseDate(formatDateToYYYYMMDD(dateRange?.end_time))} date={date} setDate={setDate} patientType={patientType} />
+          }
 
           <Tooltip title="Reset Filters">
             <IconButton onClick={handleReset} color="primary">

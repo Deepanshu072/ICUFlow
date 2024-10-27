@@ -27,7 +27,7 @@ interface DateRange {
       end_time: string;
 }
 
-const TabScreen: FC<Props> = ({ stayId, patientType }) => {
+const TabScreen: FC<Props> = ({ stayId, patientType }) => {    
       const [type, setType] = useState<string>('');
       const [date, setDate] = useState<Date | null>();
       const [data, setData] = useState<PatientsData[]>([]);
@@ -39,7 +39,6 @@ const TabScreen: FC<Props> = ({ stayId, patientType }) => {
             const response = await apiRequest(url);
             return setDateRange(response.data);
       };
-
 
       const fetchData = async () => {
             let url = `/${patientType}?stay_id=${stayId}`;
@@ -63,9 +62,12 @@ const TabScreen: FC<Props> = ({ stayId, patientType }) => {
       useEffect(() => {
             loadMoreData();
             fetchDateRange();
+      }, [type, date, patientType]);
+
+      useEffect(() => {
             setDate(null);
             setType('all');
-      }, [type, date, patientType]);
+      }, [patientType]);
 
       return (
             <div>
@@ -74,7 +76,14 @@ const TabScreen: FC<Props> = ({ stayId, patientType }) => {
                         :
 
                         data && data.length > 0 ?
-                              <DataTable dateRange={dateRange} data={data} type={type} date={date} setType={setType} setDate={setDate} patientType={patientType} />
+                              <DataTable 
+                              dateRange={dateRange} 
+                              data={data} 
+                              type={type} 
+                              date={date} 
+                              setType={setType} 
+                              setDate={setDate} 
+                              patientType={patientType} />
                               :
                               <CustomBox text="No Data Found" />}
             </div>
