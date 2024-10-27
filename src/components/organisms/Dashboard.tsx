@@ -95,7 +95,7 @@ const Dashboard: FC = () => {
                   <Typography variant="h3" sx={{ marginTop: '1rem', marginLeft: 4, marginRight: 4, fontFamily: 'Averta, sans-serif' }}>
                         All Stay Details
                   </Typography>
-                  
+
                   <InfiniteScroll
                         dataLength={filteredData.length}
                         next={loadMoreData}
