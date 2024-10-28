@@ -24,7 +24,7 @@ const StayDetails = () => {
 
   return (
     <div>
-      <Typography variant="h3" sx={{ marginTop: '1rem', marginLeft: 4, marginRight: 4, fontFamily: 'Averta, sans-serif' }}>
+      <Typography variant="h4" sx={{ marginTop: '1rem', marginLeft: 4, marginRight: 4, fontFamily: 'Avenir', fontWeight: 600 }}>
         Stay Details
       </Typography>
       <Box sx={{ width: '100%', typography: 'body1' }}>

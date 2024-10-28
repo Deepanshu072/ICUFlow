@@ -92,7 +92,7 @@ const Dashboard: FC = () => {
 
       return (
             <Box>
-                  <Typography variant="h3" sx={{ marginTop: '1rem', marginLeft: 4, marginRight: 4, fontFamily: 'Averta, sans-serif' }}>
+                  <Typography variant="h3" sx={{ marginTop: '1rem', marginLeft: 4, marginRight: 4, fontFamily: 'Avenir', fontWeight: 600 }}>
                         All Stay Details
                   </Typography>
 

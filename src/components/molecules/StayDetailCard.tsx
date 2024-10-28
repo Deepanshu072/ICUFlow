@@ -6,6 +6,7 @@ import LabelTypography from '../atoms/LabelTypography';
 import ValueTypography from '../atoms/ValueTypography';
 import InfoRow from '../atoms/InfoRow';
 import StyledBox from '../atoms/StyledBox';
+import { formatDateTime, parseDate } from '../../utils/commonUtils';
 
 interface ICUStayCardProps {
       icuStay: ICUStay;
@@ -44,12 +45,12 @@ const ICUStayCard: FC<ICUStayCardProps> = ({ icuStay, handleClick }) => {
 
         <InfoRow>
           <LabelTypography>Intime:</LabelTypography>
-          <ValueTypography>{icuStay.intime}</ValueTypography>
+          <ValueTypography>{formatDateTime(parseDate(icuStay.intime))}</ValueTypography>
         </InfoRow>
 
         <InfoRow>
           <LabelTypography>Outtime:</LabelTypography>
-          <ValueTypography>{icuStay.outtime}</ValueTypography>
+          <ValueTypography>{formatDateTime(parseDate(icuStay.outtime))}</ValueTypography>
         </InfoRow>
 
         <InfoRow>
@@ -59,7 +60,7 @@ const ICUStayCard: FC<ICUStayCardProps> = ({ icuStay, handleClick }) => {
 
         <Button 
           variant="contained" 
-          color="primary" 
+          color="success" 
           onClick={() => handleClick(icuStay.stay_id)}
           fullWidth
         >
