@@ -63,6 +63,7 @@ const ICUStayCard: FC<ICUStayCardProps> = ({ icuStay, handleClick }) => {
           color="success" 
           onClick={() => handleClick(icuStay.stay_id)}
           fullWidth
+          style={{ fontFamily: 'AvenirRegular', fontWeight: 600 }}
         >
           View Details
         </Button>
